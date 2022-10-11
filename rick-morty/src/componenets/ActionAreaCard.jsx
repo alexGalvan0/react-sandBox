@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,21 +9,27 @@ import { CardActionArea } from '@mui/material';
 import axios from 'axios'
 
 export default function ActionAreaCard() {
+  const [ char, setChar ] = useState('');
+  const [ num, setNum ] = useState(0);
+  const [ image, setImage ] = useState('');
+  const [ response, setResponse ] = useState('');
 
-  const [ char, setChar ] = useState('')
-  const [ num, setNum ] = useState(0)
-  const [ image, setImage ] = useState('')
 
   const url = 'https://rickandmortyapi.com/api/character'
+
 
   const getChat = async () => {
     const response = await axios.get(url)
 
     setChar(response.data.results[num].name)
     setImage(response.data.results[num].image)
-    setNum(num + 1)
+    setNum(num<19 ? num+1: 0)
 
   }
+
+  useEffect(()=>{
+    getChat()
+  },[])
 
 
 
