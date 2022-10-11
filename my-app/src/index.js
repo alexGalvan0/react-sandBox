@@ -3,19 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { ThemeProvider, createTheme } from '@mui/material';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
+const theme = createTheme({
+  palette:{
+    primary:{
+      main:"#FFFFF"
+    },
+    secondary:{
+      main:'#284B63'
+    }
+  }
+})
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+     <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

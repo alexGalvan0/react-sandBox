@@ -15,9 +15,8 @@ export default function BasicButtons(
 
   return (
     <Stack spacing={2} direction="row">
-      <Button variant="text">Text</Button>
-      <Button variant="contained">{something}</Button>
-      <Button variant="outlined">Outlined</Button>
+      <Button color='secondary' variant="contained">{something}</Button>
+
     </Stack>
   );
 }
