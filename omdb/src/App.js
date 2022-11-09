@@ -9,17 +9,16 @@ function App() {
   let url = ` http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&t=${title}`;
 
   let getData = () => {
-      axios.get(url).then((resp) => {
-        setData(resp.data);
-      })
-  }
+    axios.get(url).then((resp) => {
+      setData(resp.data);
+    });
+  };
 
   let getInput = (e) => {
-    setTitle(e.target.value)
-  }
+    setTitle(e.target.value);
+  };
   return (
     <div className="App">
-      
       <button onClick={getData}>get Movie</button>
       <img src={data.Poster}></img>
       <ul>
@@ -29,7 +28,7 @@ function App() {
         <br />
         <li>{data.Genre}</li>
       </ul>
-      <input type="text" onChange={getInput}/>
+      <input type="text" onChange={getInput} />
     </div>
   );
 }
