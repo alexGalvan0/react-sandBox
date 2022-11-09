@@ -2,32 +2,36 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 function App() {
+  const [data, setData] = useState([]);
+  const [title, setTitle] = useState("");
   const KEY = "b29c9a1a";
-  let movie = ""
-  let movieQuery = movie.replaceAll(" ","+")
-  let url = ` http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&t=${movieQuery}`;
+  //let movieQuery = title.replaceAll(" ", "+");
+  let url = ` http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&t=${title}`;
 
-
-  const [data,setData] = useState([])
-
-
-  useEffect(() => {
-    axios.get(url).then((resp) => {
-      setData(resp.data);
-    });
-  }, []);
-
-  if (data.length == 0){
-    console.log('no data')
+  let getData = () => {
+      axios.get(url).then((resp) => {
+        setData(resp.data);
+      })
   }
-  else{
-    console.log(data)
-    return <div className="App">
-      <input type="text"></input>
+
+  let getInput = (e) => {
+    setTitle(e.target.value)
+  }
+  return (
+    <div className="App">
+      
+      <button onClick={getData}>get Movie</button>
       <img src={data.Poster}></img>
-    </div>;
-  }
-
+      <ul>
+        <li>{data.Title}</li>
+        <br />
+        <li>{data.Plot}</li>
+        <br />
+        <li>{data.Genre}</li>
+      </ul>
+      <input type="text" onChange={getInput}/>
+    </div>
+  );
 }
 
 export default App;
